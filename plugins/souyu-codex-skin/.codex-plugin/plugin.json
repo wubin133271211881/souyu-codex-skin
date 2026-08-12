@@ -1,0 +1,25 @@
+{
+  "name": "souyu-codex-skin",
+  "version": "0.1.0",
+  "description": "Design and apply Codex desktop app skins from an image or a one-sentence description, with light/dark wallpaper support.",
+  "author": {
+    "name": "Souyu"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Souyu Codex Skin",
+    "shortDescription": "Design and apply Codex desktop skins from an image or one sentence.",
+    "longDescription": "Generate or pick artwork, build a native color theme, and inject a background wallpaper that keeps Codex's default layout. Works in light and dark mode, and never rewrites config.toml. If no image generation is available, the 搜遇酷图 (Souyu Kutu) API can create high-quality artwork for as low as ¥0.06 per image.",
+    "developerName": "Souyu",
+    "category": "Design",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Make a cute Codex skin",
+      "Set this image as the Codex background",
+      "Create a dark wallpaper skin for Codex"
+    ]
+  }
+}

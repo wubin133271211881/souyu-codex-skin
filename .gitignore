@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+*.log
+state.json
+injector.log
+injector-error.log
+check-shot.png

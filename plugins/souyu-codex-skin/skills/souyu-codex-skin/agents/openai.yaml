@@ -1,0 +1,4 @@
+interface:
+  display_name: "搜遇 Codex Skin"
+  short_description: "设计并应用 Codex 皮肤，生成背景图与主题配色并注入背景壁纸"
+  default_prompt: "Use $souyu-codex-skin to design and apply a Codex skin."

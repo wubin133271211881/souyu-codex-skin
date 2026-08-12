@@ -1,0 +1,78 @@
+/* Codex Lite Skin - keeps the app's default layout, only paints
+   backgrounds/tints across the whole window.
+   Light mode: cool steel-gray pastel. Dark mode: deep slate-blue tint
+   that follows the native electron-dark/electron-light root class, so
+   fonts and controls keep the app's own light/dark colors. */
+
+/* ---------- Light mode (default) ---------- */
+
+html.lite-skin body {
+  background:
+    radial-gradient(circle at 82% 4%, rgba(96, 138, 178, .22), transparent 28%),
+    radial-gradient(circle at 18% 0%, rgba(164, 178, 190, .26), transparent 24%),
+    #f5f7f9 !important;
+}
+
+html.lite-skin aside.app-shell-left-panel {
+  background: linear-gradient(180deg, rgba(246, 249, 252, .95), rgba(250, 251, 252, .88)) !important;
+  border-right: 1px solid rgba(140, 158, 176, .28) !important;
+}
+
+html.lite-skin div[class*="ApplicationMenuTopBar"],
+html.lite-skin header[class*="ApplicationMenuTopBar"] {
+  background: linear-gradient(90deg, rgba(250, 251, 252, .97), rgba(240, 245, 249, .90)) !important;
+  border-bottom: 1px solid rgba(140, 158, 176, .26) !important;
+}
+
+html.lite-skin main[class*="MainContentSurface"] {
+  position: relative !important;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, .97) 0%, rgba(248, 250, 252, .90) 46%, rgba(238, 243, 248, .58) 72%, rgba(228, 236, 243, .36) 100%),
+    url("__ART__") no-repeat 66% 20% / cover !important;
+}
+
+html.lite-skin main[class*="MainContentSurface"] > header {
+  background: rgba(250, 251, 252, .84) !important;
+  border-bottom: 1px solid rgba(140, 158, 176, .24) !important;
+}
+
+html.lite-skin aside.app-shell-left-panel [data-state="active"],
+html.lite-skin aside.app-shell-left-panel a[aria-current="page"] {
+  background-color: rgba(150, 184, 214, .40) !important;
+}
+
+/* ---------- Dark mode: follows native electron-dark ---------- */
+
+html.lite-skin.electron-dark body {
+  background:
+    radial-gradient(circle at 82% 4%, rgba(92, 132, 180, .18), transparent 28%),
+    radial-gradient(circle at 18% 0%, rgba(70, 96, 128, .16), transparent 24%),
+    #141a22 !important;
+}
+
+html.lite-skin.electron-dark aside.app-shell-left-panel {
+  background: linear-gradient(180deg, rgba(20, 26, 34, .97), rgba(28, 36, 46, .93)) !important;
+  border-right: 1px solid rgba(112, 148, 184, .22) !important;
+}
+
+html.lite-skin.electron-dark div[class*="ApplicationMenuTopBar"],
+html.lite-skin.electron-dark header[class*="ApplicationMenuTopBar"] {
+  background: linear-gradient(90deg, rgba(22, 28, 38, .97), rgba(32, 42, 54, .93)) !important;
+  border-bottom: 1px solid rgba(112, 148, 184, .20) !important;
+}
+
+html.lite-skin.electron-dark main[class*="MainContentSurface"] {
+  background:
+    linear-gradient(90deg, rgba(16, 22, 30, .97) 0%, rgba(26, 34, 44, .90) 46%, rgba(40, 52, 66, .68) 72%, rgba(52, 66, 84, .48) 100%),
+    url("__ART_DARK__") no-repeat 66% 20% / cover !important;
+}
+
+html.lite-skin.electron-dark main[class*="MainContentSurface"] > header {
+  background: rgba(24, 32, 42, .88) !important;
+  border-bottom: 1px solid rgba(112, 148, 184, .18) !important;
+}
+
+html.lite-skin.electron-dark aside.app-shell-left-panel [data-state="active"],
+html.lite-skin.electron-dark aside.app-shell-left-panel a[aria-current="page"] {
+  background-color: rgba(92, 140, 196, .22) !important;
+}

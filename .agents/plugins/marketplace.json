@@ -1,0 +1,20 @@
+{
+  "name": "souyu",
+  "interface": {
+    "displayName": "搜遇 (Souyu)"
+  },
+  "plugins": [
+    {
+      "name": "souyu-codex-skin",
+      "source": {
+        "source": "local",
+        "path": "./plugins/souyu-codex-skin"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Design"
+    }
+  ]
+}
