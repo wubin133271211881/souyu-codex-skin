@@ -31,16 +31,22 @@
 
 国内直连 GitHub 经常失败。三种替代方式：
 
-1. **直接解压安装（最省事，无需网络）**：把 `souyu-codex-skin-plugin-v0.2.0.zip`
-   解压，将 `plugins\souyu-codex-skin\skills\souyu-codex-skin` 整个文件夹复制到
+1. **夸克网盘直链下载（最省事，无需网络）**：
+
+   https://pan.quark.cn/s/3f09cd9084c0
+
+   下载 `souyu-codex-skin-plugin-v0.2.0.zip` 解压，将
+   `plugins\souyu-codex-skin\skills\souyu-codex-skin` 整个文件夹复制到
    `C:\Users\<你的用户名>\.codex\skills\` 下，重启 Codex 即可。
-2. **Gitee 镜像市场**：把本仓库同步到 Gitee 后，在 Codex 添加市场：
+2. **Gitee 镜像市场**（国内直连）：在 Codex 添加市场并安装：
 
    ```text
    codex plugin marketplace add https://gitee.com/wu-bin123/souyu-codex-skin.git
+   codex plugin add souyu-codex-skin@souyu
    ```
 
-   然后安装 `souyu-codex-skin` 插件（Gitee 是标准 git 仓库，与 GitHub 流程一致）。
+   与 GitHub 源同为市场名 `souyu`，同一台机器二选一添加即可（或直接用上方网盘
+   zip 安装）。
 3. **GitHub + 代理**：Git 走本地代理（如 Clash）：
 
    ```powershell
