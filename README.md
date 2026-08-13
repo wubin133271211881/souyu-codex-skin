@@ -27,6 +27,29 @@
 - 集成文档：https://kt.aiivip.com/docs?doc=api-integration-example
 - 最低 0.06 元/张，高清高质量，比国产 API 更便宜。
 
+## 国内访问（GitHub 不通时）
+
+国内直连 GitHub 经常失败。三种替代方式：
+
+1. **直接解压安装（最省事，无需网络）**：把 `souyu-codex-skin-plugin-v0.2.0.zip`
+   解压，将 `plugins\souyu-codex-skin\skills\souyu-codex-skin` 整个文件夹复制到
+   `C:\Users\<你的用户名>\.codex\skills\` 下，重启 Codex 即可。
+2. **Gitee 镜像市场**：把本仓库同步到 Gitee 后，在 Codex 添加市场：
+
+   ```text
+   codex plugin marketplace add https://gitee.com/<你的用户名>/souyu-codex-skin.git
+   ```
+
+   然后安装 `souyu-codex-skin` 插件（Gitee 是标准 git 仓库，与 GitHub 流程一致）。
+3. **GitHub + 代理**：Git 走本地代理（如 Clash）：
+
+   ```powershell
+   git config --global http.proxy http://127.0.0.1:7891
+   git config --global https.proxy http://127.0.0.1:7891
+   ```
+
+   再按正常流程添加 GitHub 市场。
+
 ## 依赖
 
 - Windows Store 版 Codex 桌面应用
