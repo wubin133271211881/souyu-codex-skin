@@ -42,6 +42,7 @@ check.mjs 核验计算样式；switch_skin.ps1 完成切换+重注入+核验
 | `activeBg` | 侧栏选中项 | `rgba(82,101,224,.26)` |
 | `cardBg` | 设置页/大表面（`bg-token-main-surface-primary`） | `rgba(23,26,78,.94)` |
 | `cardBg2` | 次级表面（`bg-token-main-surface-secondary`） | `rgba(31,29,82,.90)` |
+| `utilityBg` | 欢迎页 composer 工具条（任务 chip / 完全访问 / 自定义 高） | `rgba(31,29,82,.90)` |
 | `inputBg` | 输入框/输入胶囊（`bg-token-input-background`、`_ComposerLayoutRoot_`） | `rgba(41,36,101,.72)` |
 | `topFade` | 顶部淡出渐变（`_MainContentTopFade_`） | `linear-gradient(...)` |
 | `composerFade` | 输入区底部淡出（`bg-gradient-to-t from-token-main-surface-primary`） | `linear-gradient(to top, ...)` |
@@ -60,8 +61,11 @@ check.mjs 核验计算样式；switch_skin.ps1 完成切换+重注入+核验
 | --- | --- |
 | 壁纸 + 主渐变 | `main[class*="MainContentSurface"]` |
 | 左侧栏 | `aside.app-shell-left-panel` |
-| 顶栏 | `div[class*="ApplicationMenuTopBar"]` |
+| 顶栏/标题栏 | `div[class*="ApplicationMenuTopBar"]`, `main[class*="MainContentSurface"] > header`（叠加 accent 光晕 + `moduleBg` 左侧染色，近黑皮肤下仍可见） |
 | 输入框/输入胶囊 | `[class*="_ComposerLayoutRoot_"]`, `[class*="bg-token-input-background"]` |
+| 欢迎页 composer 工具条（任务 chip / 完全访问 / 自定义 高） | `[class*="_ComposerHomeUtilityBar_"]`, `[class*="_ComposerFooter_"]`（原生 `rgb(246,246,246)`，需覆盖为 `utilityBg`） |
+| 输入框内部 | `[class*="_ComposerLayoutBody_"]`（默认 oklab 背景，需染成 `inputBg`） |
+| 新对话欢迎页表面 | `div[class*="home-main-content"]`（accent 光晕 + `moduleBg` 顶部染色） |
 | 顶部淡出 | `[class*="_MainContentTopFade_"]` |
 | 输入区底部淡出 | `[class*="bg-gradient-to-t"][class*="from-token-main-surface-primary"]` |
 | 设置/会话表面 | `[class*="bg-token-main-surface-primary"]`, `[class*="bg-token-main-surface-secondary"]` |
@@ -87,8 +91,7 @@ check.mjs 核验计算样式；switch_skin.ps1 完成切换+重注入+核验
 
 ## 新增一套皮肤的步骤
 
-1. 用 `souyu-image-2` 出图（16:9、主体靠右、无文字水印；暗色月夜 + 浅色樱花
-   各一张）。
+1. 用 `souyu-image-2` 出图（**提示词一律用中文**；16:9、主体靠右、无文字水印；暗色月夜 + 浅色樱花各一张，示例见 `SKILL.md`）。
 2. `python scripts/prepare_art.py <light> --dark <dark>` 压缩壁纸。
 3. 复制 `skins/hinata-adult/` 为 `skins/<id>/`，替换 jpg，按上面字段表填
    `skin.json`（从图提取主色，参考 `build_theme.py` 的推导逻辑）。
@@ -110,7 +113,7 @@ python scripts\import_skin.py --source <pack目录> [--id <id>] [--label <中文
 规则：
 - `--scan` 递归找 `theme.json`，把 `-dark`/`-light` 后缀的同 id 兄弟目录合并成一套；
 - 缺明暗某一侧配色时，用 `build_theme.py` 从对应壁纸推导 surface/ink/accent；
-- 由 (surface, ink, accent) 按统一公式渲染 22 键调色板（alpha 混合参考本文表格）；
+- 由 (surface, ink, accent) 按统一公式渲染 24 键调色板（alpha 混合参考本文表格）；
 - 壁纸压缩为 `skins/<id>/light.jpg` / `dark.jpg`；
 - 已注册的 id 自动跳过；注册后 `switch_skin.ps1 -Name <id>` 即可切换。
 
@@ -167,3 +170,46 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts\switch_skin.ps1 -Rem
 - Radix 菜单不吃 `el.click()`，验证要发真实 CDP 鼠标事件
   （`Input.dispatchMouseEvent`）。左下角头像菜单合成事件也打不开，按共享类规则覆盖即可。
 - 应用升级导致类名变化时，按本表重新扫 DOM 并更新 `style.template.css`。
+
+## 一键全盘配色（create_skin.py）
+
+新增皮肤不再需要手工填 24 键：直接给图，一条命令生成全部颜色并注册/切换。
+
+```powershell
+python scripts\create_skin.py --light <light图> --dark <dark图> --id <id> --label "<中文名>" [--dark-accent #hex]
+```
+
+做了什么：
+
+1. `build_theme.derive_theme` 从每张图推导原生主题三色（accent/surface/ink + 语义色），写出 `outputs/<id>/pack/{light,dark}/` 原生包；
+2. `import_skin.derive_palette` 从三色渲染完整 24 键 light/dark 调色板；
+3. 压缩壁纸到 `skins/<id>/light.jpg|dark.jpg`，写 `skin.json`；
+4. 输出 `outputs/<id>/palette-preview.png` 供目检；
+5. 默认直接 `switch_skin.switch` 生效（`--no-switch` 只注册）。
+
+自动 accent 取图片最饱和色；人物皮肤想固定主角色用 `--light-accent` / `--dark-accent`（或 `--accent` 双端），其余 23 键仍全自动。验证照旧：`node scripts\check.mjs --port 9335`。
+
+## 皮肤 = 颜色表 + 图片（apply_skin.py）
+
+每套皮肤注册后自带颜色表：
+
+- `skins/<id>/colors.json` — 可编辑颜色表（机器读取：原生三色/语义色 + 24 键面板，light/dark）；
+- `skins/<id>/colors.md` — 颜色表可视化视图（自动生成）；
+- `skins/<id>/light.jpg|dark.jpg` — 图片。
+
+改色/换图后一条命令生效：
+
+```powershell
+python scripts\apply_skin.py --id <id>            # 应用
+python scripts\apply_skin.py --id <id> --dry-run  # 预览
+```
+
+它会把 `colors.json` 同步进 `skin.json`、重渲染 `style.css`、复制壁纸、更新 state、重生成原生导入串与 `colors.md`。
+
+老皮肤补颜色表（`utilityBg` 等新键缺失时）：
+
+```powershell
+python scripts\sync_color_tables.py --all
+```
+
+已有颜色表的皮肤只合并缺失键并刷新 `colors.md`，不会覆盖手工改动。

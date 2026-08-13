@@ -18,8 +18,18 @@ Design and apply a Codex desktop skin in one flow: generate tone-matched artwork
 1. **Determine the current appearance mode** (light/dark) from `[desktop] appearanceTheme` in `~/.codex/config.toml`, or from the live `electron-dark`/`electron-light` root class when CDP is available.
 2. **Get the artwork (tone-matched)**:
    - Image provided → use it directly;
-   - Sentence only → generate with the `souyu-image-2` skill (landscape 16:9, subject on the right, no text/watermark), matching the tone to the current mode: light → bright/pastel; dark → dark night palette with glowing accents.
+   - Sentence only → generate with the `souyu-image-2` skill (**提示词一律用中文**; landscape 16:9, subject on the right, no text/watermark), matching the tone to the current mode: light → bright/pastel; dark → dark night palette with glowing accents.
    - When possible produce both a light and a dark variant so switching Appearance mode swaps the wallpaper.
+
+### 中文提示词示例（直接套用，替换主题描述即可）
+
+亮图（明亮/柔和）：
+
+> 超宽 16:9 壁纸：晨雾中层层青绿远山，平静河面映着淡金朝霞，米白、奶油、浅青绿与淡金色调，简洁雅致的水墨画风格，画面干净留白，无文字无水印
+
+暗图（暗夜/发光）：
+
+> 超宽 16:9 壁纸：明月挂在深靛蓝群山与雾河之上，深墨蓝基调，点缀青绿与淡银辉光，简洁雅致的水墨画风格，静谧空灵，无文字无水印
 
 ## If the user has no image generation
 
@@ -73,6 +83,24 @@ Stops the watcher and injector and removes the injected style from the running a
 It also removes the logon autostart entry, so the watcher will not return at
 the next logon.
 
+## One-shot full-board coloring (create_skin.py)
+
+Instead of building packs and hand-filling every `skin.json` color, one command
+derives ALL colors from the artwork (native theme packs + full 23-key panel
+palette + compressed wallpapers + registration + activation):
+
+```powershell
+python scripts\create_skin.py --light <light-img> --dark <dark-img> --id <id> --label "<中文名>"
+```
+
+Optional hero-color override: `--light-accent #hex` / `--dark-accent #hex`
+(or `--accent` for both); the other 22 keys stay fully automatic. Use
+`--no-switch` to register without activating. Later edits go through the skin's
+own color table: change `skins/<id>/colors.json` or swap `light.jpg`/`dark.jpg`,
+then run `python scripts\apply_skin.py --id <id>` (add `--dry-run` to preview).
+See
+[references/recoloring.md](references/recoloring.md).
+
 ## Quick skin switching
 
 Each generated skin is registered under `skins/<id>/`:
@@ -95,6 +123,16 @@ render `scripts/style.css` from
 `scripts/style.template.css` and keep the wallpaper visible; the chat
 composer, input chips, cards and the settings page are tinted from the same
 palette (backgrounds only, never font colors).
+
+### Built-in preset: 宫崎骏治愈 (miyazaki)
+
+This skill ships with a bundled cute Ghibli-style wallpaper preset
+(`skins/miyazaki/`): light = summer pastoral watercolor (blue sky, green
+hills, cottage, stream), dark = starry night with galaxy, moon and
+fireflies, both featuring a round hexagonal snowflake mascot on the right
+with the left side left blank for UI. It is the current default artwork
+(`scripts/art.jpg` / `scripts/art-dark.jpg`). Activate anytime with
+`switch_skin.ps1 -Name miyazaki` or the in-app「皮肤」switcher.
 
 Switch skins instantly (restarts the injector and verifies automatically):
 
@@ -158,8 +196,10 @@ The template tints all of these; backgrounds only, never font colors:
 | --- | --- |
 | Wallpaper + main gradient | `main[class*="MainContentSurface"]` |
 | Left panel | `aside.app-shell-left-panel` |
-| Top bar | `div[class*="ApplicationMenuTopBar"]` |
+| Top bar + titlebar | `div[class*="ApplicationMenuTopBar"]`, `main[class*="MainContentSurface"] > header` (accent glow + `moduleBg` wash so near-black palettes stay visible) |
 | Input/composer + chips | `[class*="_ComposerLayoutRoot_"]`, `[class*="bg-token-input-background"]` |
+| Composer inner body | `[class*="_ComposerLayoutBody_"]` |
+| New-chat welcome dialog surface | `div[class*="home-main-content"]` (accent glows + `moduleBg` top wash) |
 | Top fade | `[class*="_MainContentTopFade_"]` |
 | Composer bottom fades | `[class*="bg-gradient-to-t"][class*="from-token-main-surface-primary"]` |
 | Settings/chat surfaces | `[class*="bg-token-main-surface-primary"]`, `[class*="bg-token-main-surface-secondary"]` |

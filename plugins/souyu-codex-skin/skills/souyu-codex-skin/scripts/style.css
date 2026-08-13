@@ -8,111 +8,136 @@
 
 html.lite-skin body {
   background:
-    radial-gradient(circle at 82% 4%, rgba(224, 85, 127, 0.18), transparent 28%),
-    radial-gradient(circle at 18% 0%, rgba(244, 191, 198, 0.22), transparent 24%),
-    #fdede5 !important;
+    radial-gradient(circle at 82% 4%, rgba(33, 137, 191, 0.18), transparent 28%),
+    radial-gradient(circle at 18% 0%, rgba(168, 209, 208, 0.22), transparent 24%),
+    #e2f0d7 !important;
 }
 
 html.lite-skin aside.app-shell-left-panel {
-  background: linear-gradient(180deg, rgba(253, 237, 229, 0.96), rgba(247, 207, 209, 0.90)) !important;
-  border-right: 1px solid rgba(244, 191, 198, 0.30) !important;
+  background: linear-gradient(180deg, rgba(226, 240, 215, 0.96), rgba(187, 219, 210, 0.90)) !important;
+  border-right: 1px solid rgba(168, 209, 208, 0.30) !important;
 }
 
 html.lite-skin div[class*="ApplicationMenuTopBar"],
 html.lite-skin header[class*="ApplicationMenuTopBar"] {
-  background: linear-gradient(90deg, rgba(253, 237, 229, 0.97), rgba(247, 207, 209, 0.92)) !important;
-  border-bottom: 1px solid rgba(244, 191, 198, 0.30) !important;
+  background:
+    radial-gradient(circle at 90% -30%, rgba(33, 137, 191, 0.18), transparent 45%),
+    linear-gradient(90deg, rgba(187, 219, 210, 0.92) 0%, transparent 38%),
+    linear-gradient(90deg, rgba(226, 240, 215, 0.97), rgba(187, 219, 210, 0.92)) !important;
+  border-bottom: 1px solid rgba(168, 209, 208, 0.30) !important;
 }
 
 html.lite-skin main[class*="MainContentSurface"] {
   position: relative !important;
   background:
-    linear-gradient(90deg, rgba(253, 237, 229, 0.97) 0%, rgba(247, 207, 209, 0.90) 46%, rgba(244, 191, 198, 0.55) 72%, rgba(238, 161, 178, 0.30) 100%),
+    linear-gradient(90deg, rgba(226, 240, 215, 0.97) 0%, rgba(187, 219, 210, 0.90) 46%, rgba(168, 209, 208, 0.55) 72%, rgba(130, 188, 203, 0.30) 100%),
     url("__ART__") no-repeat 66% 20% / cover !important;
 }
 
 html.lite-skin main[class*="MainContentSurface"] > header {
-  background: rgba(253, 237, 229, 0.85) !important;
-  border-bottom: 1px solid rgba(244, 191, 198, 0.30) !important;
+  background:
+    radial-gradient(circle at 90% -30%, rgba(33, 137, 191, 0.18), transparent 45%),
+    linear-gradient(90deg, rgba(187, 219, 210, 0.92) 0%, transparent 38%),
+    rgba(226, 240, 215, 0.85) !important;
+  border-bottom: 1px solid rgba(168, 209, 208, 0.30) !important;
 }
 
 html.lite-skin aside.app-shell-left-panel [data-state="active"],
 html.lite-skin aside.app-shell-left-panel a[aria-current="page"] {
-  background-color: rgba(244, 191, 198, 0.38) !important;
+  background-color: rgba(168, 209, 208, 0.38) !important;
 }
 
 html.lite-skin [class*="bg-token-main-surface-primary"] {
-  background-color: rgba(253, 237, 229, 0.94) !important;
+  background-color: rgba(226, 240, 215, 0.94) !important;
 }
 
 html.lite-skin [class*="bg-token-main-surface-secondary"] {
-  background-color: rgba(247, 207, 209, 0.90) !important;
+  background-color: rgba(187, 219, 210, 0.90) !important;
+}
+
+/* New-chat welcome dialog: make the surface visibly follow the skin even
+   when the palette's main background is near-white/near-black. */
+html.lite-skin div[class*="home-main-content"] {
+  background:
+    radial-gradient(circle at 82% 8%, rgba(33, 137, 191, 0.18), transparent 36%),
+    radial-gradient(circle at 12% 94%, rgba(168, 209, 208, 0.22), transparent 30%),
+    linear-gradient(180deg, rgba(187, 219, 210, 0.92) 0%, transparent 55%) !important;
+}
+
+html.lite-skin [class*="_ComposerLayoutBody_"] {
+  background-color: rgba(187, 219, 210, 0.78) !important;
 }
 
 /* New-chat welcome suggestions (4 cards under "What should we do?") */
 html.lite-skin section[class*="home-suggestions"] button {
-  background-color: rgba(247, 207, 209, 0.92) !important;
-  border-color: rgba(244, 191, 198, 0.30) !important;
+  background-color: rgba(187, 219, 210, 0.92) !important;
+  border-color: rgba(168, 209, 208, 0.30) !important;
 }
 
 html.lite-skin section[class*="home-suggestions"] button:hover {
-  background-color: rgba(244, 191, 198, 0.38) !important;
+  background-color: rgba(168, 209, 208, 0.38) !important;
 }
 
 html.lite-skin section[class*="home-suggestions"] svg[class*="text-token-charts-"] {
-  color: #e0557f !important;
+  color: #2189bf !important;
 }
 
 html.lite-skin [class*="bg-token-input-background"],
 html.lite-skin [class*="_ComposerLayoutRoot_"] {
-  background-color: rgba(247, 207, 209, 0.78) !important;
+  background-color: rgba(187, 219, 210, 0.78) !important;
+}
+
+/* Welcome/new-chat composer utility bar (task chip, 完全访问, model selector) */
+html.lite-skin [class*="_ComposerHomeUtilityBar_"],
+html.lite-skin [class*="_ComposerFooter_"] {
+  background-color: rgba(187, 219, 210, 0.90) !important;
 }
 
 html.lite-skin [class*="border-token-border"] {
-  border-color: rgba(244, 191, 198, 0.30) !important;
+  border-color: rgba(168, 209, 208, 0.30) !important;
 }
 
 html.lite-skin [class*="_MainContentTopFade_"] {
-  background-image: linear-gradient(to top, rgba(253, 237, 229, 0.95) 0%, rgba(253, 237, 229, 0.00) 100%) !important;
+  background-image: linear-gradient(to top, rgba(226, 240, 215, 0.95) 0%, rgba(226, 240, 215, 0.00) 100%) !important;
 }
 
 html.lite-skin [class*="bg-gradient-to-t"][class*="from-token-main-surface-primary"] {
-  background-image: linear-gradient(to top, rgba(253, 237, 229, 0.95) 0%, rgba(244, 191, 198, 0.55) 50%, rgba(253, 237, 229, 0.00) 100%) !important;
+  background-image: linear-gradient(to top, rgba(226, 240, 215, 0.95) 0%, rgba(168, 209, 208, 0.55) 50%, rgba(226, 240, 215, 0.00) 100%) !important;
 }
 
 html.lite-skin [class*="bg-token-application-menu-background"] {
-  background-color: rgba(253, 237, 229, 0.98) !important;
+  background-color: rgba(226, 240, 215, 0.98) !important;
 }
 
 html.lite-skin [class*="bg-token-dropdown-background"] {
-  background-color: rgba(253, 237, 229, 0.98) !important;
+  background-color: rgba(226, 240, 215, 0.98) !important;
 }
 
 html.lite-skin [class*="rounded-2xl"][class*="overflow-hidden"][class*="border-token-border"] {
-  background-color: rgba(247, 207, 209, 0.92) !important;
+  background-color: rgba(187, 219, 210, 0.92) !important;
 }
 
 html.lite-skin [class*="bg-token-bg-fog"],
 html.lite-skin [class*="bg-token-foreground/5"] {
-  background-color: rgba(241, 176, 188, 0.20) !important;
+  background-color: rgba(149, 199, 205, 0.20) !important;
 }
 
 html.lite-skin [class*="after:bg-token-border"]::after {
-  background-color: rgba(244, 191, 198, 0.30) !important;
+  background-color: rgba(168, 209, 208, 0.30) !important;
 }
 
 html.lite-skin [class*="app-theme"] {
-  background-color: rgba(253, 237, 229, 0.96) !important;
+  background-color: rgba(226, 240, 215, 0.96) !important;
 }
 
 html.lite-skin [class*="app-theme"] .xterm-viewport,
 html.lite-skin [class*="app-theme"] .xterm-screen {
-  background-color: rgba(253, 237, 229, 0.96) !important;
+  background-color: rgba(226, 240, 215, 0.96) !important;
 }
 
 html.lite-skin [class*="app-theme"] .xterm,
 html.lite-skin [class*="app-theme"] .xterm-rows span {
-  color: #62454b !important;
+  color: #2d4d39 !important;
 }
 
 /* ---------- Sidebar skin switcher (injected widget) ---------- */
@@ -133,8 +158,8 @@ html.lite-skin .codex-skin-btn {
   height: 32px;
   padding: 0 10px;
   border-radius: 8px;
-  border: 1px solid rgba(244, 191, 198, 0.30);
-  background: rgba(247, 207, 209, 0.90);
+  border: 1px solid rgba(168, 209, 208, 0.30);
+  background: rgba(187, 219, 210, 0.90);
   color: inherit;
   cursor: pointer;
   font-size: 13px;
@@ -142,14 +167,14 @@ html.lite-skin .codex-skin-btn {
 }
 
 html.lite-skin .codex-skin-btn:hover {
-  background: rgba(244, 191, 198, 0.38);
+  background: rgba(168, 209, 208, 0.38);
 }
 
 html.lite-skin .codex-skin-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: rgba(224, 85, 127, 0.18);
+  background: rgba(33, 137, 191, 0.18);
   flex: none;
 }
 
@@ -168,8 +193,8 @@ html.lite-skin .codex-skin-menu {
   bottom: calc(100% + 6px);
   left: 0;
   right: 0;
-  background: rgba(253, 237, 229, 0.98);
-  border: 1px solid rgba(244, 191, 198, 0.30);
+  background: rgba(226, 240, 215, 0.98);
+  border: 1px solid rgba(168, 209, 208, 0.30);
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, .28);
   padding: 6px;
@@ -192,7 +217,7 @@ html.lite-skin .codex-skin-item {
 }
 
 html.lite-skin .codex-skin-item:hover {
-  background: rgba(244, 191, 198, 0.38);
+  background: rgba(168, 209, 208, 0.38);
 }
 
 html.lite-skin .codex-skin-item:disabled {
@@ -226,14 +251,14 @@ html.lite-skin .codex-skin-del {
 }
 
 html.lite-skin .codex-skin-del:hover {
-  background: rgba(244, 191, 198, 0.38);
+  background: rgba(168, 209, 208, 0.38);
   opacity: 1;
 }
 
 html.lite-skin .codex-skin-del[data-confirm="1"] {
   opacity: 1;
   font-weight: 700;
-  background: rgba(244, 191, 198, 0.38);
+  background: rgba(168, 209, 208, 0.38);
 }
 
 html.lite-skin .codex-skin-del:disabled {
@@ -245,138 +270,162 @@ html.lite-skin .codex-skin-del:disabled {
 
 html.lite-skin.electron-dark body {
   background:
-    radial-gradient(circle at 82% 4%, rgba(82, 97, 224, 0.24), transparent 28%),
-    radial-gradient(circle at 18% 0%, rgba(82, 97, 224, 0.16), transparent 24%),
-    #0a0d27 !important;
+    radial-gradient(circle at 82% 4%, rgba(82, 125, 224, 0.24), transparent 28%),
+    radial-gradient(circle at 18% 0%, rgba(82, 125, 224, 0.16), transparent 24%),
+    #021128 !important;
 }
 
 html.lite-skin.electron-dark aside.app-shell-left-panel {
-  background: linear-gradient(180deg, rgba(10, 13, 39, 0.97), rgba(32, 38, 94, 0.93)) !important;
-  border-right: 1px solid rgba(82, 97, 224, 0.30) !important;
+  background: linear-gradient(180deg, rgba(2, 17, 40, 0.97), rgba(26, 49, 95, 0.93)) !important;
+  border-right: 1px solid rgba(82, 125, 224, 0.30) !important;
 }
 
 html.lite-skin.electron-dark div[class*="ApplicationMenuTopBar"],
 html.lite-skin.electron-dark header[class*="ApplicationMenuTopBar"] {
-  background: linear-gradient(90deg, rgba(10, 13, 39, 0.97), rgba(32, 38, 94, 0.92)) !important;
-  border-bottom: 1px solid rgba(82, 97, 224, 0.30) !important;
+  background:
+    radial-gradient(circle at 90% -30%, rgba(82, 125, 224, 0.24), transparent 45%),
+    linear-gradient(90deg, rgba(26, 49, 95, 0.90) 0%, transparent 38%),
+    linear-gradient(90deg, rgba(2, 17, 40, 0.97), rgba(26, 49, 95, 0.92)) !important;
+  border-bottom: 1px solid rgba(82, 125, 224, 0.30) !important;
 }
 
 html.lite-skin.electron-dark main[class*="MainContentSurface"] {
   background:
-    linear-gradient(90deg, rgba(10, 13, 39, 0.97) 0%, rgba(24, 30, 76, 0.90) 46%, rgba(39, 47, 113, 0.70) 72%, rgba(82, 97, 224, 0.45) 100%),
+    linear-gradient(90deg, rgba(2, 17, 40, 0.97) 0%, rgba(18, 39, 77, 0.90) 46%, rgba(34, 60, 114, 0.70) 72%, rgba(82, 125, 224, 0.45) 100%),
     url("__ART_DARK__") no-repeat 66% 20% / cover !important;
 }
 
 html.lite-skin.electron-dark main[class*="MainContentSurface"] > header {
-  background: rgba(24, 30, 76, 0.88) !important;
-  border-bottom: 1px solid rgba(82, 97, 224, 0.30) !important;
+  background:
+    radial-gradient(circle at 90% -30%, rgba(82, 125, 224, 0.24), transparent 45%),
+    linear-gradient(90deg, rgba(26, 49, 95, 0.90) 0%, transparent 38%),
+    rgba(18, 39, 77, 0.88) !important;
+  border-bottom: 1px solid rgba(82, 125, 224, 0.30) !important;
 }
 
 html.lite-skin.electron-dark aside.app-shell-left-panel [data-state="active"],
 html.lite-skin.electron-dark aside.app-shell-left-panel a[aria-current="page"] {
-  background-color: rgba(82, 97, 224, 0.26) !important;
+  background-color: rgba(82, 125, 224, 0.26) !important;
 }
 
 html.lite-skin.electron-dark [class*="bg-token-main-surface-primary"] {
-  background-color: rgba(10, 13, 39, 0.94) !important;
+  background-color: rgba(2, 17, 40, 0.94) !important;
 }
 
 html.lite-skin.electron-dark [class*="bg-token-main-surface-secondary"] {
-  background-color: rgba(32, 38, 94, 0.90) !important;
+  background-color: rgba(26, 49, 95, 0.90) !important;
+}
+
+/* New-chat welcome dialog: make the surface visibly follow the skin even
+   when the palette's main background is near-white/near-black. */
+html.lite-skin.electron-dark div[class*="home-main-content"] {
+  background:
+    radial-gradient(circle at 82% 8%, rgba(82, 125, 224, 0.24), transparent 36%),
+    radial-gradient(circle at 12% 94%, rgba(82, 125, 224, 0.16), transparent 30%),
+    linear-gradient(180deg, rgba(26, 49, 95, 0.90) 0%, transparent 55%) !important;
+}
+
+html.lite-skin.electron-dark [class*="_ComposerLayoutBody_"] {
+  background-color: rgba(42, 71, 132, 0.72) !important;
 }
 
 /* New-chat welcome suggestions (4 cards under "What should we do?") */
 html.lite-skin.electron-dark section[class*="home-suggestions"] button {
-  background-color: rgba(32, 38, 94, 0.90) !important;
-  border-color: rgba(82, 97, 224, 0.30) !important;
+  background-color: rgba(26, 49, 95, 0.90) !important;
+  border-color: rgba(82, 125, 224, 0.30) !important;
 }
 
 html.lite-skin.electron-dark section[class*="home-suggestions"] button:hover {
-  background-color: rgba(82, 97, 224, 0.26) !important;
+  background-color: rgba(82, 125, 224, 0.26) !important;
 }
 
 html.lite-skin.electron-dark section[class*="home-suggestions"] svg[class*="text-token-charts-"] {
-  color: #5261e0 !important;
+  color: #527de0 !important;
 }
 
 html.lite-skin.electron-dark [class*="bg-token-input-background"],
 html.lite-skin.electron-dark [class*="_ComposerLayoutRoot_"] {
-  background-color: rgba(46, 55, 132, 0.72) !important;
+  background-color: rgba(42, 71, 132, 0.72) !important;
+}
+
+html.lite-skin.electron-dark [class*="_ComposerHomeUtilityBar_"],
+html.lite-skin.electron-dark [class*="_ComposerFooter_"] {
+  background-color: rgba(26, 49, 95, 0.90) !important;
 }
 
 html.lite-skin.electron-dark [class*="border-token-border"] {
-  border-color: rgba(82, 97, 224, 0.30) !important;
+  border-color: rgba(82, 125, 224, 0.30) !important;
 }
 
 html.lite-skin.electron-dark [class*="_MainContentTopFade_"] {
-  background-image: linear-gradient(to top, rgba(10, 13, 39, 0.95) 0%, rgba(10, 13, 39, 0.00) 100%) !important;
+  background-image: linear-gradient(to top, rgba(2, 17, 40, 0.95) 0%, rgba(2, 17, 40, 0.00) 100%) !important;
 }
 
 html.lite-skin.electron-dark [class*="bg-gradient-to-t"][class*="from-token-main-surface-primary"] {
-  background-image: linear-gradient(to top, rgba(10, 13, 39, 0.95) 0%, rgba(32, 38, 94, 0.55) 50%, rgba(10, 13, 39, 0.00) 100%) !important;
+  background-image: linear-gradient(to top, rgba(2, 17, 40, 0.95) 0%, rgba(26, 49, 95, 0.55) 50%, rgba(2, 17, 40, 0.00) 100%) !important;
 }
 
 html.lite-skin.electron-dark [class*="bg-token-application-menu-background"] {
-  background-color: rgba(39, 47, 113, 0.97) !important;
+  background-color: rgba(34, 60, 114, 0.97) !important;
 }
 
 html.lite-skin.electron-dark [class*="bg-token-dropdown-background"] {
-  background-color: rgba(39, 47, 113, 0.97) !important;
+  background-color: rgba(34, 60, 114, 0.97) !important;
 }
 
 html.lite-skin.electron-dark [class*="rounded-2xl"][class*="overflow-hidden"][class*="border-token-border"] {
-  background-color: rgba(32, 38, 94, 0.90) !important;
+  background-color: rgba(26, 49, 95, 0.90) !important;
 }
 
 html.lite-skin.electron-dark [class*="bg-token-bg-fog"],
 html.lite-skin.electron-dark [class*="bg-token-foreground/5"] {
-  background-color: rgba(82, 97, 224, 0.22) !important;
+  background-color: rgba(82, 125, 224, 0.22) !important;
 }
 
 html.lite-skin.electron-dark [class*="after:bg-token-border"]::after {
-  background-color: rgba(82, 97, 224, 0.30) !important;
+  background-color: rgba(82, 125, 224, 0.30) !important;
 }
 
 html.lite-skin.electron-dark [class*="app-theme"] {
-  background-color: rgba(24, 30, 76, 0.97) !important;
+  background-color: rgba(18, 39, 77, 0.97) !important;
 }
 
 html.lite-skin.electron-dark [class*="app-theme"] .xterm-viewport,
 html.lite-skin.electron-dark [class*="app-theme"] .xterm-screen {
-  background-color: rgba(24, 30, 76, 0.97) !important;
+  background-color: rgba(18, 39, 77, 0.97) !important;
 }
 
 html.lite-skin.electron-dark [class*="app-theme"] .xterm,
 html.lite-skin.electron-dark [class*="app-theme"] .xterm-rows span {
-  color: #f6edf4 !important;
+  color: #f0f1f6 !important;
 }
 
 /* ---------- Sidebar skin switcher (dark) ---------- */
 
 html.lite-skin.electron-dark .codex-skin-btn {
-  border-color: rgba(82, 97, 224, 0.30);
-  background: rgba(32, 38, 94, 0.90);
+  border-color: rgba(82, 125, 224, 0.30);
+  background: rgba(26, 49, 95, 0.90);
 }
 
 html.lite-skin.electron-dark .codex-skin-btn:hover {
-  background: rgba(82, 97, 224, 0.26);
+  background: rgba(82, 125, 224, 0.26);
 }
 
 html.lite-skin.electron-dark .codex-skin-dot {
-  background: rgba(82, 97, 224, 0.24);
+  background: rgba(82, 125, 224, 0.24);
 }
 
 html.lite-skin.electron-dark .codex-skin-menu {
-  background: rgba(39, 47, 113, 0.97);
-  border-color: rgba(82, 97, 224, 0.30);
+  background: rgba(34, 60, 114, 0.97);
+  border-color: rgba(82, 125, 224, 0.30);
 }
 
 html.lite-skin.electron-dark .codex-skin-item:hover {
-  background: rgba(82, 97, 224, 0.26);
+  background: rgba(82, 125, 224, 0.26);
 }
 
 html.lite-skin.electron-dark .codex-skin-del:hover,
 html.lite-skin.electron-dark .codex-skin-del[data-confirm="1"] {
-  background: rgba(82, 97, 224, 0.26);
+  background: rgba(82, 125, 224, 0.26);
   opacity: 1;
 }

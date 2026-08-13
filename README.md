@@ -2,6 +2,13 @@
 
 搜遇 Codex 皮肤技能：用一张图或一句话为 Codex 桌面应用生成并应用皮肤（背景壁纸 + 主题配色），保持默认界面布局，支持浅色/深色模式自动切换壁纸。
 
+## v0.2.2 更新
+
+- 一键全盘配色：`create_skin.py` 从图片直接生成完整颜色表（原生主题 + 24+ 键面板调色板）并注册/切换皮肤；
+- 皮肤 = 颜色表 + 图片：每套皮肤自带 `colors.json` / `colors.md`，改色或换图后 `apply_skin.py --id <id>` 一键生效；
+- 新增 `utilityBg`（欢迎页 composer 工具条）等颜色键，老皮肤用 `sync_color_tables.py --all` 一键补齐；
+- 生图提示词统一使用中文（示例见 SKILL.md）。
+
 ## 安装
 
 ### 方式一：手动放入技能目录（最快）
@@ -35,7 +42,7 @@
 
    https://pan.quark.cn/s/ab803e6e46c9
 
-    下载 `souyu-codex-skin-plugin-v0.2.1.zip` 解压，将
+    下载 `souyu-codex-skin-plugin-v0.2.2.zip` 解压，将
    `plugins\souyu-codex-skin\skills\souyu-codex-skin` 整个文件夹复制到
    `C:\Users\<你的用户名>\.codex\skills\` 下，重启 Codex 即可。
 2. **Gitee 镜像市场**（国内直连）：在 Codex 添加市场并安装：

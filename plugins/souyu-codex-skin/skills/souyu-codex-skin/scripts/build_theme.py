@@ -134,6 +134,67 @@ def pick_semantic(colors: list[tuple[int, int, int]], variant: str) -> dict[str,
     return defaults
 
 
+def derive_theme(img: Image.Image, variant: str = "auto") -> dict:
+    """Derive the native theme core (accent/surface/ink + semantic) from artwork.
+
+    Shared by build_theme.py itself and by create_skin.py so the full-board
+    panel palette and the native theme always come from the same colors.
+    Returns a dict with variant, colors, accent, surface, ink, contrast,
+    semantic.
+    """
+    if img.mode not in ("RGB", "RGBA"):
+        img = img.convert("RGB")
+    colors = dominant_colors(img)
+    if variant == "auto":
+        variant = "dark" if sum(luminance(c) for c in colors) / len(colors) < 0.25 else "light"
+
+    if variant == "light":
+        surface = max(colors, key=luminance)
+        while luminance(surface) < 0.75:
+            surface = blend(surface, (255, 255, 255), 0.25)
+        ink = min(colors, key=luminance)
+        while luminance(ink) > 0.10:
+            ink = blend(ink, (0, 0, 0), 0.2)
+        accent = max(colors, key=saturation)
+        if saturation(accent) < 0.3:
+            accent = parse_hex("#c85a3f")  # muted image: warm fallback
+        else:
+            accent = saturate_to(accent, 0.7, 0.5)
+        accent = ensure_contrast(accent, surface, 3.0, (0, 0, 0))
+        if lightness(accent) < 0.35:
+            accent = saturate_to(accent, 0.7, 0.5)
+        ink = ensure_contrast(ink, surface, 7.0, (0, 0, 0))
+    else:
+        surface = min(colors, key=luminance)
+        while luminance(surface) > 0.05:
+            surface = blend(surface, (0, 0, 0), 0.2)
+        ink = max(colors, key=luminance)
+        while luminance(ink) < 0.85:
+            ink = blend(ink, (255, 255, 255), 0.2)
+        accent = max(colors, key=saturation)
+        if saturation(accent) < 0.3:
+            accent = parse_hex("#e58e4c")  # muted image: warm fallback
+        else:
+            accent = saturate_to(accent, 0.7, 0.6)
+        accent = ensure_contrast(accent, surface, 3.0, (255, 255, 255))
+        if lightness(accent) > 0.75:
+            accent = saturate_to(accent, 0.7, 0.6)
+        ink = ensure_contrast(ink, surface, 7.0, (255, 255, 255))
+
+    ratio = contrast_ratio(ink, surface)
+    contrast = max(0, min(100, round((ratio - 1.0) / 20.0 * 100)))
+    semantic = pick_semantic(colors, variant)
+    return {
+        "variant": variant,
+        "colors": colors,
+        "accent": accent,
+        "surface": surface,
+        "ink": ink,
+        "contrast": contrast,
+        "semantic": semantic,
+    }
+
+
 def slugify(name: str) -> str:
     s = re.sub(r"[^0-9a-zA-Z-]+", "-", name.strip().lower()).strip("-")
     return s or "codex-skin"
@@ -210,50 +271,13 @@ def main() -> None:
 
     img = Image.open(src)
     img.load()
-    if img.mode not in ("RGB", "RGBA"):
-        img = img.convert("RGB")
     if img.width < img.height:
         print("Warning: portrait image; landscape backgrounds are recommended.")
 
-    colors = dominant_colors(img)
-    variant = args.variant
-    if variant == "auto":
-        variant = "dark" if sum(luminance(c) for c in colors) / len(colors) < 0.25 else "light"
-
-    # Palette derivation
-    if variant == "light":
-        surface = max(colors, key=luminance)
-        while luminance(surface) < 0.75:
-            surface = blend(surface, (255, 255, 255), 0.25)
-        ink = min(colors, key=luminance)
-        while luminance(ink) > 0.10:
-            ink = blend(ink, (0, 0, 0), 0.2)
-        accent = max(colors, key=saturation)
-        if saturation(accent) < 0.3:
-            accent = parse_hex("#c85a3f")  # muted image: warm fallback
-        else:
-            accent = saturate_to(accent, 0.7, 0.5)
-        accent = ensure_contrast(accent, surface, 3.0, (0, 0, 0))
-        if lightness(accent) < 0.35:
-            accent = saturate_to(accent, 0.7, 0.5)
-        ink = ensure_contrast(ink, surface, 7.0, (0, 0, 0))
-    else:
-        surface = min(colors, key=luminance)
-        while luminance(surface) > 0.05:
-            surface = blend(surface, (0, 0, 0), 0.2)
-        ink = max(colors, key=luminance)
-        while luminance(ink) < 0.85:
-            ink = blend(ink, (255, 255, 255), 0.2)
-        accent = max(colors, key=saturation)
-        if saturation(accent) < 0.3:
-            accent = parse_hex("#e58e4c")  # muted image: warm fallback
-        else:
-            accent = saturate_to(accent, 0.7, 0.6)
-        accent = ensure_contrast(accent, surface, 3.0, (255, 255, 255))
-        if lightness(accent) > 0.75:
-            accent = saturate_to(accent, 0.7, 0.6)
-        ink = ensure_contrast(ink, surface, 7.0, (255, 255, 255))
-
+    derived = derive_theme(img, args.variant)
+    variant = derived["variant"]
+    colors = derived["colors"]
+    accent, surface, ink = derived["accent"], derived["surface"], derived["ink"]
     if args.accent:
         accent = parse_hex(args.accent)
     if args.surface:
@@ -261,9 +285,9 @@ def main() -> None:
     if args.ink:
         ink = parse_hex(args.ink)
 
+    semantic = pick_semantic(colors, variant)
     ratio = contrast_ratio(ink, surface)
     contrast = max(0, min(100, round((ratio - 1.0) / 20.0 * 100)))
-    semantic = pick_semantic(colors, variant)
 
     theme = {
         "codeThemeId": slugify(args.name),

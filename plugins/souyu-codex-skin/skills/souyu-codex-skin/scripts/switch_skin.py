@@ -51,6 +51,7 @@ TOKEN_MAP = {
     "ACTIVE_BG": "activeBg",
     "CARD_BG": "cardBg",
     "CARD_BG2": "cardBg2",
+    "UTILITY_BG": "utilityBg",
     "INPUT_BG": "inputBg",
     "TOP_FADE": "topFade",
     "COMPOSER_FADE": "composerFade",
@@ -95,6 +96,10 @@ def render_style(palette: dict) -> str:
                     if key == "accent" and "terminalInk" in p:
                         # Legacy skins predate the accent key: fall back to ink.
                         css = css.replace(placeholder, str(p["terminalInk"]))
+                        continue
+                    if key == "utilityBg" and "cardBg2" in p:
+                        # Legacy skins predate the utility-bar key: reuse cardBg2.
+                        css = css.replace(placeholder, str(p["cardBg2"]))
                         continue
                     missing.append(variant + "." + key)
                     continue

@@ -20,7 +20,10 @@ html.lite-skin aside.app-shell-left-panel {
 
 html.lite-skin div[class*="ApplicationMenuTopBar"],
 html.lite-skin header[class*="ApplicationMenuTopBar"] {
-  background: linear-gradient(90deg, @@LIGHT_TOP_A@@, @@LIGHT_TOP_B@@) !important;
+  background:
+    radial-gradient(circle at 90% -30%, @@LIGHT_BODY_GLOW_A@@, transparent 45%),
+    linear-gradient(90deg, @@LIGHT_MODULE_BG@@ 0%, transparent 38%),
+    linear-gradient(90deg, @@LIGHT_TOP_A@@, @@LIGHT_TOP_B@@) !important;
   border-bottom: 1px solid @@LIGHT_BORDER@@ !important;
 }
 
@@ -32,7 +35,10 @@ html.lite-skin main[class*="MainContentSurface"] {
 }
 
 html.lite-skin main[class*="MainContentSurface"] > header {
-  background: @@LIGHT_HEADER_BG@@ !important;
+  background:
+    radial-gradient(circle at 90% -30%, @@LIGHT_BODY_GLOW_A@@, transparent 45%),
+    linear-gradient(90deg, @@LIGHT_MODULE_BG@@ 0%, transparent 38%),
+    @@LIGHT_HEADER_BG@@ !important;
   border-bottom: 1px solid @@LIGHT_BORDER@@ !important;
 }
 
@@ -47,6 +53,19 @@ html.lite-skin [class*="bg-token-main-surface-primary"] {
 
 html.lite-skin [class*="bg-token-main-surface-secondary"] {
   background-color: @@LIGHT_CARD_BG2@@ !important;
+}
+
+/* New-chat welcome dialog: make the surface visibly follow the skin even
+   when the palette's main background is near-white/near-black. */
+html.lite-skin div[class*="home-main-content"] {
+  background:
+    radial-gradient(circle at 82% 8%, @@LIGHT_BODY_GLOW_A@@, transparent 36%),
+    radial-gradient(circle at 12% 94%, @@LIGHT_BODY_GLOW_B@@, transparent 30%),
+    linear-gradient(180deg, @@LIGHT_MODULE_BG@@ 0%, transparent 55%) !important;
+}
+
+html.lite-skin [class*="_ComposerLayoutBody_"] {
+  background-color: @@LIGHT_INPUT_BG@@ !important;
 }
 
 /* New-chat welcome suggestions (4 cards under "What should we do?") */
@@ -66,6 +85,12 @@ html.lite-skin section[class*="home-suggestions"] svg[class*="text-token-charts-
 html.lite-skin [class*="bg-token-input-background"],
 html.lite-skin [class*="_ComposerLayoutRoot_"] {
   background-color: @@LIGHT_INPUT_BG@@ !important;
+}
+
+/* Welcome/new-chat composer utility bar (task chip, 完全访问, model selector) */
+html.lite-skin [class*="_ComposerHomeUtilityBar_"],
+html.lite-skin [class*="_ComposerFooter_"] {
+  background-color: @@LIGHT_UTILITY_BG@@ !important;
 }
 
 html.lite-skin [class*="border-token-border"] {
@@ -257,7 +282,10 @@ html.lite-skin.electron-dark aside.app-shell-left-panel {
 
 html.lite-skin.electron-dark div[class*="ApplicationMenuTopBar"],
 html.lite-skin.electron-dark header[class*="ApplicationMenuTopBar"] {
-  background: linear-gradient(90deg, @@DARK_TOP_A@@, @@DARK_TOP_B@@) !important;
+  background:
+    radial-gradient(circle at 90% -30%, @@DARK_BODY_GLOW_A@@, transparent 45%),
+    linear-gradient(90deg, @@DARK_MODULE_BG@@ 0%, transparent 38%),
+    linear-gradient(90deg, @@DARK_TOP_A@@, @@DARK_TOP_B@@) !important;
   border-bottom: 1px solid @@DARK_BORDER@@ !important;
 }
 
@@ -268,7 +296,10 @@ html.lite-skin.electron-dark main[class*="MainContentSurface"] {
 }
 
 html.lite-skin.electron-dark main[class*="MainContentSurface"] > header {
-  background: @@DARK_HEADER_BG@@ !important;
+  background:
+    radial-gradient(circle at 90% -30%, @@DARK_BODY_GLOW_A@@, transparent 45%),
+    linear-gradient(90deg, @@DARK_MODULE_BG@@ 0%, transparent 38%),
+    @@DARK_HEADER_BG@@ !important;
   border-bottom: 1px solid @@DARK_BORDER@@ !important;
 }
 
@@ -283,6 +314,19 @@ html.lite-skin.electron-dark [class*="bg-token-main-surface-primary"] {
 
 html.lite-skin.electron-dark [class*="bg-token-main-surface-secondary"] {
   background-color: @@DARK_CARD_BG2@@ !important;
+}
+
+/* New-chat welcome dialog: make the surface visibly follow the skin even
+   when the palette's main background is near-white/near-black. */
+html.lite-skin.electron-dark div[class*="home-main-content"] {
+  background:
+    radial-gradient(circle at 82% 8%, @@DARK_BODY_GLOW_A@@, transparent 36%),
+    radial-gradient(circle at 12% 94%, @@DARK_BODY_GLOW_B@@, transparent 30%),
+    linear-gradient(180deg, @@DARK_MODULE_BG@@ 0%, transparent 55%) !important;
+}
+
+html.lite-skin.electron-dark [class*="_ComposerLayoutBody_"] {
+  background-color: @@DARK_INPUT_BG@@ !important;
 }
 
 /* New-chat welcome suggestions (4 cards under "What should we do?") */
@@ -302,6 +346,11 @@ html.lite-skin.electron-dark section[class*="home-suggestions"] svg[class*="text
 html.lite-skin.electron-dark [class*="bg-token-input-background"],
 html.lite-skin.electron-dark [class*="_ComposerLayoutRoot_"] {
   background-color: @@DARK_INPUT_BG@@ !important;
+}
+
+html.lite-skin.electron-dark [class*="_ComposerHomeUtilityBar_"],
+html.lite-skin.electron-dark [class*="_ComposerFooter_"] {
+  background-color: @@DARK_UTILITY_BG@@ !important;
 }
 
 html.lite-skin.electron-dark [class*="border-token-border"] {
