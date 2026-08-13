@@ -84,11 +84,14 @@ skins/<id>/
   dark.jpg    dark night wallpaper (optional; falls back to light)
 ```
 
-`skin.json` palette keys (light/dark variants, CSS color strings): `bodyBg`,
-`bodyGlowA`, `bodyGlowB`, `asideA`, `asideB`, `border`, `topA`, `topB`,
-`mainA`–`mainD`, `headerBg`, `activeBg`, plus chat/settings surfaces `cardBg`,
-`cardBg2`, `inputBg`, `topFade`, `composerFade`, `menuBg`, `moduleBg`,
-`buttonBg`, `terminalBg`, `terminalInk`. These render `scripts/style.css` from
+`skin.json` palette keys (light/dark variants, CSS color strings): `accent`,
+`bodyBg`, `bodyGlowA`, `bodyGlowB`, `asideA`, `asideB`, `border`, `topA`,
+`topB`, `mainA`–`mainD`, `headerBg`, `activeBg`, plus chat/settings surfaces
+`cardBg`, `cardBg2`, `inputBg`, `topFade`, `composerFade`, `menuBg`,
+`moduleBg`, `buttonBg`, `terminalBg`, `terminalInk`. `accent` is the
+full-opacity accent derived from the artwork (used for the new-chat welcome
+suggestion icons); legacy skins missing it fall back to `terminalInk`. These
+render `scripts/style.css` from
 `scripts/style.template.css` and keep the wallpaper visible; the chat
 composer, input chips, cards and the settings page are tinted from the same
 palette (backgrounds only, never font colors).
@@ -164,6 +167,7 @@ The template tints all of these; backgrounds only, never font colors:
 | Dropdowns (权限/推理/置顶/输出面板) | `[class*="bg-token-dropdown-background"]` |
 | Settings module cards | `[class*="rounded-2xl"][class*="overflow-hidden"][class*="border-token-border"]` |
 | Settings buttons | `[class*="bg-token-bg-fog"]`, `[class*="bg-token-foreground/5"]` |
+| New-chat welcome suggestions (4 cards) | `section[class*="home-suggestions"] button` (bg/border/hover) + `section[class*="home-suggestions"] svg[class*="text-token-charts-"]` (icon `color` = `accent`) |
 | Module dividers | `[class*="after:bg-token-border"]::after` |
 | Terminal frame | `[class*="app-theme"]` |
 | Borders | `[class*="border-token-border"]` |

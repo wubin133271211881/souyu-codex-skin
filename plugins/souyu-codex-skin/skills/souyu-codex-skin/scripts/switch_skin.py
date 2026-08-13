@@ -59,6 +59,7 @@ TOKEN_MAP = {
     "BUTTON_BG": "buttonBg",
     "TERMINAL_BG": "terminalBg",
     "TERMINAL_INK": "terminalInk",
+    "ACCENT": "accent",
 }
 
 
@@ -91,6 +92,10 @@ def render_style(palette: dict) -> str:
             placeholder = "@@" + variant.upper() + "_" + token + "@@"
             if placeholder in css:
                 if key not in p:
+                    if key == "accent" and "terminalInk" in p:
+                        # Legacy skins predate the accent key: fall back to ink.
+                        css = css.replace(placeholder, str(p["terminalInk"]))
+                        continue
                     missing.append(variant + "." + key)
                     continue
                 css = css.replace(placeholder, str(p[key]))

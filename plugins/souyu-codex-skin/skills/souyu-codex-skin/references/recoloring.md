@@ -31,6 +31,7 @@ check.mjs 核验计算样式；switch_skin.ps1 完成切换+重注入+核验
 
 | 字段 | 作用 | 示例（暗色） |
 | --- | --- | --- |
+| `accent` | 强调色（新对话欢迎页 4 个建议卡片的图标） | `#e58e4c` |
 | `bodyBg` | 窗口底色 | `#141746` |
 | `bodyGlowA` / `bodyGlowB` | 背景光晕（径向渐变） | `rgba(111,88,171,.24)` |
 | `asideA` / `asideB` | 左侧栏渐变 | `rgba(20,23,70,.97)` |
@@ -70,6 +71,7 @@ check.mjs 核验计算样式；switch_skin.ps1 完成切换+重注入+核验
 | 设置按钮 | `[class*="bg-token-bg-fog"]`, `[class*="bg-token-foreground/5"]` |
 | 模块分割线 | `[class*="after:bg-token-border"]::after` |
 | 终端框/视口 | `[class*="app-theme"]`, `[class*="app-theme"] .xterm-viewport`, `[class*="app-theme"] .xterm-screen` |
+| 新对话欢迎页建议卡片（4 个） | `section[class*="home-suggestions"] button`（背景/边框/hover）+ `section[class*="home-suggestions"] svg[class*="text-token-charts-"]`（图标 = `accent`） |
 | 边框 | `[class*="border-token-border"]` |
 
 ## 特殊组件

@@ -49,6 +49,20 @@ html.lite-skin [class*="bg-token-main-surface-secondary"] {
   background-color: @@LIGHT_CARD_BG2@@ !important;
 }
 
+/* New-chat welcome suggestions (4 cards under "What should we do?") */
+html.lite-skin section[class*="home-suggestions"] button {
+  background-color: @@LIGHT_MODULE_BG@@ !important;
+  border-color: @@LIGHT_BORDER@@ !important;
+}
+
+html.lite-skin section[class*="home-suggestions"] button:hover {
+  background-color: @@LIGHT_ACTIVE_BG@@ !important;
+}
+
+html.lite-skin section[class*="home-suggestions"] svg[class*="text-token-charts-"] {
+  color: @@LIGHT_ACCENT@@ !important;
+}
+
 html.lite-skin [class*="bg-token-input-background"],
 html.lite-skin [class*="_ComposerLayoutRoot_"] {
   background-color: @@LIGHT_INPUT_BG@@ !important;
@@ -269,6 +283,20 @@ html.lite-skin.electron-dark [class*="bg-token-main-surface-primary"] {
 
 html.lite-skin.electron-dark [class*="bg-token-main-surface-secondary"] {
   background-color: @@DARK_CARD_BG2@@ !important;
+}
+
+/* New-chat welcome suggestions (4 cards under "What should we do?") */
+html.lite-skin.electron-dark section[class*="home-suggestions"] button {
+  background-color: @@DARK_MODULE_BG@@ !important;
+  border-color: @@DARK_BORDER@@ !important;
+}
+
+html.lite-skin.electron-dark section[class*="home-suggestions"] button:hover {
+  background-color: @@DARK_ACTIVE_BG@@ !important;
+}
+
+html.lite-skin.electron-dark section[class*="home-suggestions"] svg[class*="text-token-charts-"] {
+  color: @@DARK_ACCENT@@ !important;
 }
 
 html.lite-skin.electron-dark [class*="bg-token-input-background"],

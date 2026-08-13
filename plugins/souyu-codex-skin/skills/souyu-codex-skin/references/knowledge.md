@@ -62,6 +62,7 @@ After a Codex update, re-verify selectors with computed styles + a screenshot be
 - Terminal frame follows the mode: light mode uses the skin's light `terminalBg` (light lavender), dark mode the dark one; both keys are required in `skin.json`.
 - xterm internals hardcode black: `.xterm .xterm-viewport`/`.xterm-screen` have `background-color: rgb(0,0,0)` and composition view is white-on-black. Override `.xterm-viewport`/`.xterm-screen` with the skin `terminalBg`, and set `.xterm`/`.xterm-rows span` to `terminalInk` so text stays readable in both modes (light mode: light bg + dark ink; dark mode: deep indigo bg + light ink).
 - Settings module cards: `[class*="rounded-2xl"][class*="overflow-hidden"][class*="border-token-border"]` (native `rgb(35,35,35)`); settings buttons: `bg-token-bg-fog` / `bg-token-foreground/5`; dividers: `[class*="after:bg-token-border"]::after`.
+- New-chat welcome suggestions: the four cards are `section[class*="home-suggestions"] button` (background/border/hover tinted from `moduleBg`/`border`/`activeBg`); their default chart-colored icons are `svg[class*="text-token-charts-"]` and are recolored to the skin `accent` (`terminalInk` fallback for skins without the key).
 - Composer bottom fades are compiled black gradients `bg-gradient-to-t from-token-main-surface-primary`; the top fade is `_MainContentTopFade_*`.
 
 ## Interaction & verification tips

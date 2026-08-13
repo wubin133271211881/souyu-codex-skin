@@ -143,6 +143,7 @@ def derive_palette(variant: str, surface: str, ink: str, accent: str) -> dict:
     SA5 = blend(S, A, 0.50)
     if variant == "dark":
         return {
+            "accent": accent,
             "bodyBg": surface,
             "bodyGlowA": rgba(A, 0.24),
             "bodyGlowB": rgba(A, 0.16),
@@ -169,6 +170,7 @@ def derive_palette(variant: str, surface: str, ink: str, accent: str) -> dict:
             "terminalInk": ink,
         }
     return {
+        "accent": accent,
         "bodyBg": surface,
         "bodyGlowA": rgba(A, 0.18),
         "bodyGlowB": rgba(SA3, 0.22),
