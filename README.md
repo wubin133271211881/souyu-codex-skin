@@ -33,7 +33,7 @@
 
 1. **夸克网盘直链下载（最省事，无需网络）**：
 
-   https://pan.quark.cn/s/3f09cd9084c0
+   https://pan.quark.cn/s/ab803e6e46c9
 
     下载 `souyu-codex-skin-plugin-v0.2.1.zip` 解压，将
    `plugins\souyu-codex-skin\skills\souyu-codex-skin` 整个文件夹复制到
