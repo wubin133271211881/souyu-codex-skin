@@ -37,7 +37,7 @@
 2. **Gitee 镜像市场**：把本仓库同步到 Gitee 后，在 Codex 添加市场：
 
    ```text
-   codex plugin marketplace add https://gitee.com/<你的用户名>/souyu-codex-skin.git
+   codex plugin marketplace add https://gitee.com/wu-bin123/souyu-codex-skin.git
    ```
 
    然后安装 `souyu-codex-skin` 插件（Gitee 是标准 git 仓库，与 GitHub 流程一致）。
