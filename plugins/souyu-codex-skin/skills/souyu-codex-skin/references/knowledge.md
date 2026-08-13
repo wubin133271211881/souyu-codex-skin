@@ -51,3 +51,33 @@
 - Inner thread header: `main[class*="MainContentSurface"] > header`
 
 After a Codex update, re-verify selectors with computed styles + a screenshot before assuming the skin still works.
+
+## Surface classes are compiled, not variables (26.803)
+
+- `bg-token-*` utilities bake static colors at build time; `getPropertyValue('--token-*')` on `<html>` returns empty. Overriding CSS custom properties does **not** tint them; use substring attribute selectors like `[class*="bg-token-input-background"]` with `!important`.
+- Two menu surfaces exist and both need rules:
+  - menu bar menus (文件/编辑/视图/帮助): `bg-token-application-menu-background`;
+  - Radix dropdowns (权限、推理强度、置顶聊天、Codex 模式、输出面板): `bg-token-dropdown-background`.
+- Terminal frame: `[class*="app-theme"]` (unique occurrence — the whole bottom terminal panel; its parent uses `bg-token-main-surface-primary`).
+- Terminal frame follows the mode: light mode uses the skin's light `terminalBg` (light lavender), dark mode the dark one; both keys are required in `skin.json`.
+- xterm internals hardcode black: `.xterm .xterm-viewport`/`.xterm-screen` have `background-color: rgb(0,0,0)` and composition view is white-on-black. Override `.xterm-viewport`/`.xterm-screen` with the skin `terminalBg`, and set `.xterm`/`.xterm-rows span` to `terminalInk` so text stays readable in both modes (light mode: light bg + dark ink; dark mode: deep indigo bg + light ink).
+- Settings module cards: `[class*="rounded-2xl"][class*="overflow-hidden"][class*="border-token-border"]` (native `rgb(35,35,35)`); settings buttons: `bg-token-bg-fog` / `bg-token-foreground/5`; dividers: `[class*="after:bg-token-border"]::after`.
+- Composer bottom fades are compiled black gradients `bg-gradient-to-t from-token-main-surface-primary`; the top fade is `_MainContentTopFade_*`.
+
+## Interaction & verification tips
+
+- Settings page opens with Ctrl+, (CDP `Input.dispatchKeyEvent`, modifiers=2); verify surfaces by reading `getComputedStyle(...).backgroundColor` before/after.
+- Radix menus ignore `el.click()`; use real CDP mouse events (`Input.dispatchMouseEvent`: mouseMoved → mousePressed → mouseReleased). The bottom-left profile menu (deepseek avatar) did not open even with synthetic events; verify it via the shared class rule instead.
+- Capture screenshots with `Page.captureScreenshot`; never call image-vision to verify skin output (user preference, 2026-08).
+- In-app skin switcher: app:// pages cannot `fetch` loopback HTTP (CSP blocks it; observed `TypeError: Failed to fetch`). The injected sidebar widget therefore writes `window.__codexSkinPending`, and the injector's watch loop polls it, runs `switch_skin.py`, reloads assets, and re-applies to every session. Keep this DOM-flag pattern if the widget is reworked.
+- Startup loading is two-step: the keeper watcher (`watch.ps1`) polls every 3s and, when Codex is up without the debug port, relaunches it with `--remote-debugging-port` and re-injects — expect ~30-60s and one window restart after opening Codex. For resilience: a hidden autostart entry (Startup folder `CodexLiteSkinWatcher.vbs`) starts the watcher at logon, and the watch loop re-adds the sidebar widget if React re-renders and drops it (appearance switches rebuild the aside without a page reload).
+- `import_skin.py find_art` fallback lesson: when a pack has several `background.png` (split dark/light siblings), assign one per variant in root order; assigning the first fallback to both variants silently makes light/dark art identical (observed with 妲己).
+
+## Skin registry & switching (added 2026-08)
+
+- Skins live in `skins/<id>/` as `skin.json` (+ `light.jpg`/`dark.jpg`). `switch_skin.py` renders `scripts/style.css` from `scripts/style.template.css`, copies the artwork over `art.jpg`/`art-dark.jpg`, and records `currentSkin` in `%LOCALAPPDATA%\CodexLiteSkin\state.json`. `switch_skin.ps1` restarts the injector and runs `check.mjs`.
+- Encoding pitfalls seen in practice:
+  - PowerShell `Set-Content -Encoding utf8` writes UTF-8 **with BOM**; Python `json.loads(..., encoding='utf-8')` fails on it → read state.json with `utf-8-sig`.
+  - PowerShell `Get-Content -Raw` without `-Encoding UTF8` decodes UTF-8 as GBK on Chinese-locale Windows; JSON containing Chinese labels then fails to parse → always pass `-Encoding UTF8`.
+  - Set `$env:PYTHONIOENCODING='utf-8'` before running Python that prints Chinese, or console output garbles (GBK console).
+- `start.ps1` preserves `currentSkin`/`currentSkinLabel` when it rewrites state.json.
