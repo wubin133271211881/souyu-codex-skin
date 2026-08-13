@@ -1,0 +1,84 @@
+{
+  "id": "cute-girl",
+  "label": "可爱女孩 · 蜜桃粉",
+  "variants": {
+    "light": {
+      "accent": "#e0557f",
+      "surface": "#fdede5",
+      "ink": "#62454b",
+      "contrast": 32,
+      "semanticColors": {
+        "diffAdded": "#1f8a4c",
+        "diffRemoved": "#d13438",
+        "skill": "#b7791f"
+      },
+      "panel": {
+        "accent": "#e0557f",
+        "bodyBg": "#fdede5",
+        "bodyGlowA": "rgba(224, 85, 127, 0.18)",
+        "bodyGlowB": "rgba(244, 191, 198, 0.22)",
+        "asideA": "rgba(253, 237, 229, 0.96)",
+        "asideB": "rgba(247, 207, 209, 0.90)",
+        "border": "rgba(244, 191, 198, 0.30)",
+        "topA": "rgba(253, 237, 229, 0.97)",
+        "topB": "rgba(247, 207, 209, 0.92)",
+        "mainA": "rgba(253, 237, 229, 0.97)",
+        "mainB": "rgba(247, 207, 209, 0.9)",
+        "mainC": "rgba(244, 191, 198, 0.55)",
+        "mainD": "rgba(238, 161, 178, 0.3)",
+        "headerBg": "rgba(253, 237, 229, 0.85)",
+        "activeBg": "rgba(244, 191, 198, 0.38)",
+        "cardBg": "rgba(253, 237, 229, 0.94)",
+        "cardBg2": "rgba(247, 207, 209, 0.90)",
+        "inputBg": "rgba(247, 207, 209, 0.78)",
+        "topFade": "linear-gradient(to top, rgba(253, 237, 229, 0.95) 0%, rgba(253, 237, 229, 0.00) 100%)",
+        "composerFade": "linear-gradient(to top, rgba(253, 237, 229, 0.95) 0%, rgba(244, 191, 198, 0.55) 50%, rgba(253, 237, 229, 0.00) 100%)",
+        "menuBg": "rgba(253, 237, 229, 0.98)",
+        "moduleBg": "rgba(247, 207, 209, 0.92)",
+        "buttonBg": "rgba(241, 176, 188, 0.20)",
+        "terminalBg": "rgba(253, 237, 229, 0.96)",
+        "terminalInk": "#62454b",
+        "utilityBg": "rgba(247, 207, 209, 0.90)"
+      }
+    },
+    "dark": {
+      "accent": "#5261e0",
+      "surface": "#0a0d27",
+      "ink": "#f6edf4",
+      "contrast": 78,
+      "semanticColors": {
+        "diffAdded": "#3fb950",
+        "diffRemoved": "#f85149",
+        "skill": "#d29922"
+      },
+      "panel": {
+        "accent": "#5261e0",
+        "bodyBg": "#0a0d27",
+        "bodyGlowA": "rgba(82, 97, 224, 0.24)",
+        "bodyGlowB": "rgba(82, 97, 224, 0.16)",
+        "asideA": "rgba(10, 13, 39, 0.97)",
+        "asideB": "rgba(32, 38, 94, 0.93)",
+        "border": "rgba(82, 97, 224, 0.30)",
+        "topA": "rgba(10, 13, 39, 0.97)",
+        "topB": "rgba(32, 38, 94, 0.92)",
+        "mainA": "rgba(10, 13, 39, 0.97)",
+        "mainB": "rgba(24, 30, 76, 0.9)",
+        "mainC": "rgba(39, 47, 113, 0.7)",
+        "mainD": "rgba(82, 97, 224, 0.45)",
+        "headerBg": "rgba(24, 30, 76, 0.88)",
+        "activeBg": "rgba(82, 97, 224, 0.26)",
+        "cardBg": "rgba(10, 13, 39, 0.94)",
+        "cardBg2": "rgba(32, 38, 94, 0.90)",
+        "inputBg": "rgba(46, 55, 132, 0.72)",
+        "topFade": "linear-gradient(to top, rgba(10, 13, 39, 0.95) 0%, rgba(10, 13, 39, 0.00) 100%)",
+        "composerFade": "linear-gradient(to top, rgba(10, 13, 39, 0.95) 0%, rgba(32, 38, 94, 0.55) 50%, rgba(10, 13, 39, 0.00) 100%)",
+        "menuBg": "rgba(39, 47, 113, 0.97)",
+        "moduleBg": "rgba(32, 38, 94, 0.90)",
+        "buttonBg": "rgba(82, 97, 224, 0.22)",
+        "terminalBg": "rgba(24, 30, 76, 0.97)",
+        "terminalInk": "#f6edf4",
+        "utilityBg": "rgba(32, 38, 94, 0.90)"
+      }
+    }
+  }
+}

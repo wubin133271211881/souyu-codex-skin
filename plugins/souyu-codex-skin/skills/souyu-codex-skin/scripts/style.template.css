@@ -98,7 +98,10 @@ html.lite-skin [class*="border-token-border"] {
 }
 
 html.lite-skin [class*="_MainContentTopFade_"] {
-  background-image: @@LIGHT_TOP_FADE@@ !important;
+  /* Hidden: on the empty new-chat page this element renders as a dark
+     shadow strip across the top of the chat area; the wallpaper already
+     provides the tonal blend. */
+  background: transparent !important;
 }
 
 html.lite-skin [class*="bg-gradient-to-t"][class*="from-token-main-surface-primary"] {
@@ -358,7 +361,7 @@ html.lite-skin.electron-dark [class*="border-token-border"] {
 }
 
 html.lite-skin.electron-dark [class*="_MainContentTopFade_"] {
-  background-image: @@DARK_TOP_FADE@@ !important;
+  background: transparent !important;
 }
 
 html.lite-skin.electron-dark [class*="bg-gradient-to-t"][class*="from-token-main-surface-primary"] {

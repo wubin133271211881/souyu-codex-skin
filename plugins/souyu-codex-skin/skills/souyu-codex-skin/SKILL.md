@@ -124,15 +124,33 @@ render `scripts/style.css` from
 composer, input chips, cards and the settings page are tinted from the same
 palette (backgrounds only, never font colors).
 
-### Built-in preset: 宫崎骏治愈 (miyazaki)
+### Built-in presets
 
-This skill ships with a bundled cute Ghibli-style wallpaper preset
-(`skins/miyazaki/`): light = summer pastoral watercolor (blue sky, green
-hills, cottage, stream), dark = starry night with galaxy, moon and
-fireflies, both featuring a round hexagonal snowflake mascot on the right
-with the left side left blank for UI. It is the current default artwork
-(`scripts/art.jpg` / `scripts/art-dark.jpg`). Activate anytime with
-`switch_skin.ps1 -Name miyazaki` or the in-app「皮肤」switcher.
+This skill ships with 13 ready-made skins under `skins/<id>/` (each with
+`skin.json` + `colors.json`/`colors.md` + light/dark wallpapers). Activate
+anytime with `switch_skin.ps1 -Name <id>` or the in-app「皮肤」switcher:
+
+| id | 中文名 |
+| --- | --- |
+| `miyazaki` | 宫崎骏治愈（默认） |
+| `cute-girl` | 可爱女孩 · 蜜桃粉 |
+| `doraemon` | 哆啦A梦 · 童趣蓝 |
+| `hellokitty` | Hello Kitty · 可爱粉 |
+| `sakura-cute` | 春野樱 · 可爱粉 |
+| `hinata-glow` | 日向雏田 · 紫焰高光 |
+| `hinata-adult` | 日向雏田 · 月夜紫 |
+| `mai-shiranui-skin` | 不知火舞 · 绯红 |
+| `honor-of-kings-daji` | 妲己 · 王者粉 |
+| `gongsunli-codex-skin` | 公孙离 · 卡通粉 |
+| `hanli` | 韩立 · 凡人修仙 |
+| `wei-long` | wei-long · 暖金 |
+| `guofeng-jade` | 国风 · 青绿山水 |
+
+The default artwork is the cute Ghibli-style `miyazaki` preset
+(`scripts/art.jpg` / `scripts/art-dark.jpg`): light = summer pastoral
+watercolor (blue sky, green hills, cottage, stream), dark = starry night
+with galaxy, moon and fireflies, both featuring a round hexagonal
+snowflake mascot on the right with the left side left blank for UI.
 
 Switch skins instantly (restarts the injector and verifies automatically):
 
@@ -233,3 +251,4 @@ selectors in `scripts/style.template.css`.
 - [references/how-it-works.md](references/how-it-works.md) — injection mechanism, selectors, persistence.
 - [references/knowledge.md](references/knowledge.md) — recorded lessons: native limits, config.toml safety, light/dark artwork, pitfalls.
 - [references/recoloring.md](references/recoloring.md) — 整体改色方案：完整调色板字段、选择器映射、特殊组件（xterm/菜单）、新增皮肤步骤与验证清单。
+- [references/color-inventory.md](references/color-inventory.md) — 颜色使用全盘点：图片→原生主题→24 键面板→CSS 注入的完整链路与审计结论。
