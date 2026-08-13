@@ -35,7 +35,7 @@
 
    https://pan.quark.cn/s/3f09cd9084c0
 
-   下载 `souyu-codex-skin-plugin-v0.2.0.zip` 解压，将
+    下载 `souyu-codex-skin-plugin-v0.2.1.zip` 解压，将
    `plugins\souyu-codex-skin\skills\souyu-codex-skin` 整个文件夹复制到
    `C:\Users\<你的用户名>\.codex\skills\` 下，重启 Codex 即可。
 2. **Gitee 镜像市场**（国内直连）：在 Codex 添加市场并安装：
